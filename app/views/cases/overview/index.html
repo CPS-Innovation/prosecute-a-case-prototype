@@ -72,14 +72,16 @@
         })
       }}
 
-      <h2 class="govuk-heading-m">Defendants</h2>
-
-      {% if _case.defendants.length %}
+      {% if _case.defendants.length and false %}
+        <h2 class="govuk-heading-m">Defendants</h2>
         <div class="app-list">
           {% for defendant in _case.defendants %}
             <div class="app-list__item">
               <p class="govuk-body govuk-!-margin-bottom-0">
-                <a href="/cases/{{ _case.id }}/defendants/{{ defendant.id }}" class="govuk-link govuk-link--no-visited-state">
+                <a
+                  href="/cases/{{ _case.id }}/defendants/{{ defendant.id }}"
+                  class="govuk-link govuk-link--no-visited-state"
+                >
                   {{ defendant.firstName }} {{ defendant.lastName }}
                 </a>
               </p>
@@ -91,8 +93,6 @@
             </div>
           {% endfor %}
         </div>
-      {% else %}
-        <p class="govuk-body">No defendants.</p>
       {% endif %}
 
       {% if _case.hearings.length %}
@@ -101,7 +101,10 @@
           {% for hearing in _case.hearings %}
             <div class="app-list__item">
               <p class="govuk-body govuk-!-margin-bottom-0">
-                <a href="/cases/{{ _case.id }}/hearings/{{ hearing.id }}" class="govuk-link govuk-link--no-visited-state">
+                <a
+                  href="/cases/{{ _case.id }}/hearings/{{ hearing.id }}"
+                  class="govuk-link govuk-link--no-visited-state"
+                >
                   {{ hearing.type }}
                 </a>
               </p>
