@@ -20,7 +20,7 @@
     text: "Hearings",
     href: "/cases/:caseId/hearings" | replace(':caseId', _case.id),
     current: secondaryNavId == 'hearings'
-  },  
+  } if false,  
   {
     text: "Directions",
     href: "/cases/:caseId/directions" | replace(':caseId', _case.id),
@@ -52,7 +52,8 @@
     text: "Police requests",
     href: "/cases/:caseId/police-requests" | replace(':caseId', _case.id),
     current: secondaryNavId == 'police-requests'
-  }, {
+  } if false, 
+  {
     text: "Notes",
     href: "/cases/:caseId/notes" | replace(':caseId', _case.id),
     current: secondaryNavId == 'notes'
