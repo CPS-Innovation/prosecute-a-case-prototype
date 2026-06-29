@@ -24,25 +24,35 @@ For the last 3 years we have tried to do that, but we have not managed to replac
 
 Here are the main reasons for that:
 
-### Reason #1: We are adding to CMS, not replacing it — and making it harder to replace over time
+### Reason #1: We are replicating CMS, not replacing it
 
-The standard approach for replacing a live legacy system is the strangler fig pattern. 
+The standard approach for replacing a live legacy system is the strangler fig pattern: 
 
-A strangler fig is a vine that grows up around a host tree, gradually taking over its structural role, until the host can be removed and the fig stands on its own. 
+Build a new system that does the job better, migrate users to it as it becomes ready, then decommission the old one once all users have moved across.
 
-Applied to software, you build a new system that does the job better, and migrate users to it as it becomes ready. Once all users can be moved to the new system, you can decommission the old one.
+That’s not what we are doing. 
 
-That's not what we are doing. Instead, we've been building feature-products — separate systems that each handle a slice of CMS functionality — alongside it, connected back to CMS rather than replacing it.
+Instead, we’ve been building feature-products — separate systems that each handle a slice of CMS functionality — alongside it, connected back to CMS rather than replacing it.
 
-This means what we design is constrained by what CMS can support. For example, Work Management, is essentially a reskin of the task list within CMS. 
+Because the feature-products depend on CMS, what we design is constrained by what CMS can support. For example, Work Management is essentially a reskin of the task list within CMS. You can redesign the screens, but not the underlying model. The same broken workflows and workarounds carry over.
 
-You can redesign the screens, but not the underlying model. As a result, the same broken workflows (and workarounds) carry over.
+This undermines the whole point. We’re replacing CMS because it’s bad. 
 
-When we do extend the data model to do more than CMS, a notes field on a task, for example — it creates a fork between what CMS knows and what the feature-product knows. And users who work in CMS miss the information that exists in Work Management. [confirm notes as a real example, or substitute the correct one]
+Voluntarily inheriting its data model means we inherit the problems we’re trying to escape.
 
-Either way it’s hard and expensive to turn off CMS in future, because all the new feature-products are intertwined with CMS as the system of record.
+### Reason #2: The approach makes CMS harder to remove over time
 
-### Reason #2: How we are organised makes the problem worse and slows us down
+By connecting every feature-product back to CMS, we've made it the permanent system of record. 
+
+Because CMS holds the data, it can't be switched off. Every feature-product that reads from or writes back to it is a dependency that has to be unpicked before decommissioning can happen — whether or not we've changed the data model at all.
+
+When we do extend the model beyond what CMS supports — a notes field on a task, for example — it gets worse: it creates a fork between what CMS knows and what the feature-product knows, and users working in CMS miss information that only exists in the feature-product. [confirm notes as a real example, or substitute the correct one]
+
+The goal of this programme is to decommission CMS. But every new feature-product connected back to it makes that harder. The cost compounds with every new product added.
+
+Removing CMS has to be the design goal from the start — not something to figure out once enough features have shipped.
+
+### Reason #3: How we are organised makes the problem worse and slows us down
 
 We have separate teams for each feature-product, for example:
 
@@ -50,13 +60,11 @@ We have separate teams for each feature-product, for example:
 - Work management (task list)
 - Case search
 
-But this is terrible user experience.
+But this is a terrible user experience because it’s built around what tools they need to use, not the process or journey they need to take.
 
 Users just have a goal they want to achieve, such as a review a case, and the journey involves all 3 of the above feature-products. This does not give users what they need.
 
-This is something known as Conway’s Law.
-
-The result is what’s called a feature factory: features get shipped because they are a unit of work that is easier to plan, fund and demo, without anyone owning whether those features add up to something users can actually do their whole job in. 
+The result is that features get shipped because they are a unit of work that is easier to plan, fund and demo, without anyone owning whether those features add up to something users can actually do their whole job in. 
 
 This goes against the GOV.UK Service Standard, which says to design and build the whole end-to-end journey a user needs to complete, not a screen, a feature, or a task at a time.
 
@@ -64,9 +72,9 @@ Working this way also makes us slower to design and build.
 
 The feature-products rebuild functionality that already exists in CMS — constrained by the same data model — while adding the ongoing overhead of keeping them connected to it. That cost compounds with every new feature-product added.
 
-Design is constrained too: there is little point designing a fundamentally better experience if CMS's data model can't support it, so designers end up working around constraints rather than solving the underlying problem.
+Significant improvements can't be delivered either, because design is constrained by the same model. There is little point designing a fundamentally better experience if CMS can't support it, so designers end up working around constraints rather than solving the underlying problem.
 
-### Reason #3: Users don’t adopt what we build, so the work delivers little real value
+### Reason #4: Users don’t adopt what we build, so the work delivers little real value
 
 Generally, users hate using multiple systems to do their job.
 
@@ -80,7 +88,7 @@ There is no clean seam in the middle of this that a feature product can cut at c
 
 The value of what we build is conditional on adoption.
 
-### Reason #4: The feature-products can't read from CMS directly
+### Reason #5: The feature-products can't read from CMS directly
 
 The feature-products don't have direct access to CMS's database. 
 
@@ -88,14 +96,15 @@ They extract data by parsing what CMS renders on screen — screen scraping — 
 
 This is fragile: any change to CMS's layout or output can silently break the integration. 
 
-It's also slow to maintain, and it limits what data can be reliably read or written. Every feature-product is built on that foundation, so the technical risk compounds with each new one added.
+It's also costly to maintain, and it limits what data can be reliably read or written. Every feature-product is built on that foundation, so the technical risk compounds with each new one added.
 
 ## What to do instead
 
 1. Drastically reduce time spent iterating existing feature-products
 2. Define the product scope to be delivered by which deadline
 3. Get direct database access
-4. Start building the new system without syncing back data to CMS
+4. Start measuring performance
+5. Start building the new system without syncing back data to CMS
 
 ### Solution #1. Drastically reduce time spent iterating existing feature-products
 
@@ -136,7 +145,6 @@ Here are some ideas to consider (perhaps we have some of these already):
 - Scenarios for both happy (if one exists) and unhappy paths
 - A clear problem statement
 - A list of user needs, marked with which are validated and which have actually been delivered against — those are two different things
-- A performance framework: what we're trying to improve, by how much, by when, and how we'll measure it
 - A roadmap to launch written in terms of user outcomes, not features and functionality
 - A prioritised backlog written in terms of user needs, not functionality
 - A gap analysis: given the priority journeys and scenarios, what's missing between what's designed, what's built, and what users actually need
@@ -155,9 +163,24 @@ It's not real yet, but it shows what this approach looks like in practice and gi
 
 ### Solution #3. Get direct database access
 
-As Reason #4 sets out, the feature-products currently have no direct access to CMS's database — they rely on screen scraping instead. Getting proper database access removes that fragility, enables reliable reads and writes, and is a prerequisite for the one-way sync described in Solution 4.
+As Reason #5 sets out, the feature-products currently have no direct access to CMS's database — they rely on screen scraping instead. Getting proper database access removes that fragility, enables reliable reads and writes, and is a prerequisite for the one-way sync described in Solution 5.
 
-### Solution #4. Start building the new system without syncing back data to CMS
+### Solution #4. Start measuring performance
+
+Without measurement, it's too easy to mistake activity for progress.
+
+Before rollout begins, the programme needs to be able to answer four questions:
+
+- What are the KPIs — the specific things we're trying to improve?
+- What is the baseline — how does the current state perform against those measures?
+- What are the adoption targets — by when, for which cohorts, covering which case types?
+- What are the realised benefits — not projected ones, but benefits we can point to in the data?
+
+When those numbers exist, lack of progress becomes visible and hard to ignore. Without them, a programme can keep describing itself as on track while users haven't moved off CMS, adoption stays flat, and no one can say with confidence whether the work is delivering value.
+
+Measurement also gives team leads and ops managers something concrete to evaluate — not just a demo or a promise, but evidence.
+
+### Solution #5. Start building the new system without syncing back data to CMS
 
 Our recommendation is to not sync back to CMS.
 
@@ -252,3 +275,5 @@ Don't keep CMS and the new system in sync to allow fallback — scope who's allo
 5. How do we communicate this to teams currently mid-build on disparate features or on sync infrastructure, without halting useful work outright?
 6. Which of the evidence assets in "Defining what we build and for whom" do we already have in some form, and which need creating from scratch before we can responsibly scope a first slice?
 7. Who are the right team leads and ops managers to bring into the rollout plan for the first pilot, and what are their likely fears?
+8. What is the longer term plan for where data is held?
+
