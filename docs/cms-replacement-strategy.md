@@ -72,7 +72,9 @@ Working this way also makes us slower to design and build.
 
 The feature-products rebuild functionality that already exists in CMS — constrained by the same data model — while adding the ongoing overhead of keeping them connected to it. That cost compounds with every new feature-product added.
 
-Significant improvements can't be delivered either, because design is constrained by the same model. There is little point designing a fundamentally better experience if CMS can't support it, so designers end up working around constraints rather than solving the underlying problem.
+Significant improvements can't be delivered either, because design is constrained by the same model. 
+
+There is little point designing a fundamentally better experience if CMS can't support it, so designers end up working around constraints rather than solving the underlying problem.
 
 ### Reason #4: Users don’t adopt what we build, so the work delivers little real value
 
