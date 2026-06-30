@@ -40,7 +40,7 @@ This undermines the whole point. We’re replacing CMS because it’s bad.
 
 Voluntarily inheriting its data model means we inherit the problems we’re trying to escape.
 
-### Reason #2: The approach makes CMS harder to remove over time
+### Reason #2: The current approach makes CMS harder to remove over time
 
 By connecting every feature-product back to CMS, we've made it the permanent system of record. 
 
@@ -90,7 +90,7 @@ There is no clean seam in the middle of this that a feature product can cut at c
 
 The value of what we build is conditional on adoption.
 
-### Reason #5: The feature-products can't read from CMS directly
+### Reason #5: The feature-products can't read data from CMS directly
 
 The feature-products don't have direct access to CMS's database. 
 
