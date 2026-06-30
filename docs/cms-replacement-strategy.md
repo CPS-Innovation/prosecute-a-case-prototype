@@ -112,9 +112,8 @@ As of July 2026, we do not have write access, and continue to save data by opera
 
 1. Drastically reduce time spent iterating existing feature-products
 2. Define the product scope to be delivered by which deadline
-3. Get direct database access
-4. Start measuring performance
-5. Start building the new system without syncing back data to CMS
+3. Start measuring performance
+4. Start building the new system without syncing back data to CMS
 
 ### Solution #1. Drastically reduce time spent iterating existing feature-products
 
@@ -161,22 +160,16 @@ Here are some ideas to consider (perhaps we have some of these already):
 - A gap analysis: given the priority journeys and scenarios, what's missing between what's designed, what's built, and what users actually need
 - Continuous research and usability testing throughout the build, so the product reflects what users actually need — not what CMS currently gives them, or what we assume they need
 
-What this means in practice:
+What this could mean in practice:
 
 - Make leaving CMS safe by scoping, not by feature completeness alone. A slice is ready to go live when it's complete for the case types and cohort it's scoped to, including their edge cases, not when it covers the happy path for everyone. If a case type genuinely can't be handled yet, it stays on CMS until it can, rather than being let in and then abandoned halfway through.
 - Roll out by case type and cohort — start with one case type, one unit, even one user, running end-to-end in the new system with no CMS fallback, then widen. Once a scope is fully on the new system, those users stop using CMS for that work. If users are always split across both systems, CMS never becomes redundant and we never reach the point where we can decommission it.
-
-This isn't just theoretical. 
 
 The BeyondCMS team already has a prototype deliberately unconstrained by CMS where everything a user does lives in one coherent product. 
 
 It's not real yet, but it shows what this approach looks like in practice and gives us a starting point to iterate on going forwards.
 
-### Solution #3. Get direct database access
-
-As Reason #5 sets out, the feature-products currently have no direct access to CMS's database — they rely on screen scraping instead. Getting proper database access removes that fragility, enables reliable reads and writes, and is a prerequisite for the one-way sync described in Solution 5.
-
-### Solution #4. Start measuring performance
+### Solution #3. Start measuring performance
 
 Without measurement, it's too easy to mistake activity for progress.
 
@@ -191,7 +184,7 @@ When those numbers exist, lack of progress becomes visible and hard to ignore. W
 
 Measurement also gives team leads and ops managers something concrete to evaluate — not just a demo or a promise, but evidence.
 
-### Solution #5. Start building the new system without syncing back data to CMS
+### Solution #4. Start building the new system without syncing back data to CMS
 
 Our recommendation is to not sync back to CMS.
 
@@ -213,6 +206,8 @@ The problems are:
 - It increases residual transitional architecture and tech debt
 - Leads to continued reliance on dual systems
 
+This creates a culture of focusing on shipping the smallest improvement, rather than considering the bigger picture of tech and UX.
+
 Ultimately, users keep one foot in CMS because the new system is built to stay compatible with CMS, not to solve the whole problem.
 
 #### Option #2: Sync at certain times (and the problem this has)
@@ -233,13 +228,13 @@ But the problems are similar to option 1:
 
 And this option also depends on being able to draw a clean line between what the user can do in the new system and what CMS still owns. 
 
-Ultimately, casework doesn’t have clean boundaries — it's one continuous journey with nested sub-journeys. 
+Based on existing understand we don’t think casework has clean boundaries — it's one continuous journey with nested sub-journeys.
 
 #### Recommendation: no write-back
 
-Sync only runs one way: legacy feeds cases into the new system as they're created or become eligible, but nothing ever flows back. 
+We intercept messages a source, feeding new cases into the new system as they're created or become eligible, but nothing ever flows back.
 
-There's no translation layer, no writing to two systems at once. 
+This would be the only transitional architecture. There's no translation layer, no writing to two systems at once. 
 
 The new system is still built using continuous delivery and tested continuously with real users throughout, but a case isn't worked live in the new system until a given scope of it is good enough to stand on its own, with no fallback to CMS needed. If users do need a workaround that the new system cannot do, we derisk that by scaling slowly and helping users do that. This should influence our roadmap.
 
@@ -255,7 +250,10 @@ Whatever we design and build is continuously delivered, iterated and tested in u
 
 And rather than waiting until everything is done before anyone uses it, we start with the smallest pilot that lets us learn and de-risk as we scale.
 
-In practice: we pick a case type where we have confidence the new system is ready for it, start with the smallest group of users, and have a plan for when things go wrong — for example, a developer available to migrate a case back into CMS if needed. 
+In practice: we pick a case type where we have confidence the new system is ready for it, start with the smallest group of users, and have a plan for when things go wrong. For example:
+
+- a developer available to migrate a case back into CMS if needed
+- we create ‘support consoles’ to help run the new process if needed
 
 From there, we widen scope — more case types, more users — as each slice proves itself.
 
