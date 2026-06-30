@@ -18,9 +18,11 @@ We need a different approach that:
 
 ## The problem explained in more detail
 
+Approximately 3 years ago the “Replace CMS” programme began.
+
 The goal of “Replace CMS” is to replace the legacy case management system (CMS). 
 
-For the last 3 years we have tried to do that, but we have not managed to replace CMS.
+We have not replaced any of CMS.
 
 Here are the main reasons for that:
 
@@ -34,17 +36,17 @@ That’s not what we are doing.
 
 Instead, we’ve been building feature-products — separate systems that each handle a slice of CMS functionality — alongside it, connected back to CMS rather than replacing it.
 
-Because the feature-products depend on CMS, what we design is constrained by what CMS can support. For example, Work Management is essentially a reskin of the task list within CMS. You can redesign the screens, but not the underlying model. The same broken workflows and workarounds carry over.
+Because the feature-products maintain compatibility with CMS, what we design is constrained by what CMS can support. For example, Work Management is essentially a reskin of the task list within CMS. You can redesign the screens, but not the underlying model. The same broken workflows and workarounds carry over.
 
-This undermines the whole point. We’re replacing CMS because it’s bad. 
+This undermines the whole point. We’re replacing CMS because it does not meet user needs very well and does follow the GOV.UK Service Standard.
 
 Voluntarily inheriting its data model means we inherit the problems we’re trying to escape.
 
 ### Reason #2: The current approach makes CMS harder to remove over time
 
-By connecting every feature-product back to CMS, we've made it the permanent system of record. 
+By connecting every feature-product back to the CMS database, it remains the permanent system of record. 
 
-Because CMS holds the data, it can't be switched off. Every feature-product that reads from or writes back to it is a dependency that has to be unpicked before decommissioning can happen — whether or not we've changed the data model at all.
+Every feature-product that reads from or writes back to it is a dependency that has to be unpicked before decommissioning can happen — whether or not we've changed the data model at all.
 
 When we do extend the model beyond what CMS supports — a notes field on a task, for example — it gets worse: it creates a fork between what CMS knows and what the feature-product knows, and users working in CMS miss information that only exists in the feature-product. [confirm notes as a real example, or substitute the correct one]
 
