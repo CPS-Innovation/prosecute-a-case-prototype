@@ -50,7 +50,7 @@ Every feature-product that reads from or writes back to it is a dependency that 
 
 When we do extend the model beyond what CMS supports — a notes field on a task, for example — it gets worse: it creates a fork between what CMS knows and what the feature-product knows, and users working in CMS miss information that only exists in the feature-product. [confirm notes as a real example, or substitute the correct one]
 
-The goal of this programme is to decommission CMS. But every new feature-product connected back to it makes that harder. The cost compounds with every new product added.
+The goal of this programme is to decommission CMS. But every new feature-product connected back to it makes that harder. The cost compounds with every change to a feature-product as we introduce additional transitional architecture and there’s a need to support both systems simultaneously.
 
 Removing CMS has to be the design goal from the start — not something to figure out once enough features have shipped.
 
@@ -62,9 +62,11 @@ We have separate teams for each feature-product, for example:
 - Work management (task list)
 - Case search
 
-But this is a terrible user experience because it’s built around what tools they need to use, not the process or journey they need to take.
+But this is a terrible user experience because it’s built around what tools they need to use, not the process or journey they need to take. It’s also negatively impacted the system architecture which is centered around the team structures, not the system as a whole.
 
 Users just have a goal they want to achieve, such as a review a case, and the journey involves all 3 of the above feature-products. This does not give users what they need.
+
+The main reason we organised teams around feature-products was a result of following the proof of concepts that were initially created in isolation.
 
 The result is that features get shipped because they are a unit of work that is easier to plan, fund and demo, without anyone owning whether those features add up to something users can actually do their whole job in. 
 
@@ -80,9 +82,11 @@ There is little point designing a fundamentally better experience if CMS can't s
 
 ### Reason #4: Users don’t adopt what we build, so the work delivers little real value
 
-Generally, users hate using multiple systems to do their job.
+We have had positive feedback relating to specific aspects of the new feature-products in comparison to CMS.
 
-And this is true for CPS users. Research shows this is the case. Switching between tools to do one job is a significant cognitive load. Users prefer to use one legacy system if it means using one thing.
+But we also have constant feedback that users hate using multiple systems to do their job. And would generally prefer to use CMS because it can do everything.
+
+This is not suprirsing given that switching between tools to do one job is a significant cognitive load. 
 
 Users and their managers need to be confident in the new product before they will switch. Our approach up to now does not give our users confidence, instead puts significant burden on them. They are already overworked.
 
@@ -92,15 +96,17 @@ There is no clean seam in the middle of this that a feature product can cut at c
 
 The value of what we build is conditional on adoption.
 
-### Reason #5: The feature-products can't read data from CMS directly
+### Reason #5: The feature-products have not been able to access the CMS database directly
 
-The feature-products don't have direct access to CMS's database. 
+Up until early 2026, the feature-products haven’t had direct access to CMS's database. 
 
-They extract data by parsing what CMS renders on screen — screen scraping — rather than reading from the source. 
+They have extracted data by parsing what CMS renders on screen — screen scraping — rather than reading from the source. 
 
-This is fragile: any change to CMS's layout or output can silently break the integration. 
+This has been fragile: any change to CMS's layout or output can silently break the integration. 
 
 It's also costly to maintain, and it limits what data can be reliably read or written. Every feature-product is built on that foundation, so the technical risk compounds with each new one added.
+
+As of July 2026, we do not have write access, and continue to save data by operating CMS screens.
 
 ## What to do instead
 
@@ -146,10 +152,11 @@ Here are some ideas to consider (perhaps we have some of these already):
 
 - A service map of the complete experience, as-is and to-be — with the as-is map capturing pain points and opportunities that feed directly into the to-be
 - Process maps, as-is and to-be
+- Event storming diagrams
 - Scenarios for both happy (if one exists) and unhappy paths
 - A clear problem statement
 - A list of user needs, marked with which are validated and which have actually been delivered against — those are two different things
-- A roadmap to launch written in terms of user outcomes, not features and functionality
+- A roadmap to launch written in terms of user outcomes, not features and functionality; include external interfaces and compatability with non-functional requirements
 - A prioritised backlog written in terms of user needs, not functionality
 - A gap analysis: given the priority journeys and scenarios, what's missing between what's designed, what's built, and what users actually need
 - Continuous research and usability testing throughout the build, so the product reflects what users actually need — not what CMS currently gives them, or what we assume they need
