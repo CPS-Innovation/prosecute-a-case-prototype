@@ -1,4 +1,4 @@
-# How to replace CMS with something significantly better
+# Replace CMS: strategic assessment and recommendations
 
 ## Executive summary
 
