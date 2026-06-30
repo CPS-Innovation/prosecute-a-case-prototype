@@ -78,7 +78,9 @@ The feature-products rebuild functionality that already exists in CMS — constr
 
 Significant improvements can't be delivered either, because design is constrained by the same model. 
 
-There is little point designing a fundamentally better experience if CMS can't support it, so designers end up working around constraints rather than solving the underlying problem.
+There is little point designing a fundamentally better experience if CMS can't support it, so designers end up working around constraints rather than solving the underlying problem. This severely limits the value that we can add.
+
+For example, the redesigned task list may be easier to use and more accessible, but the task model is flawed and cannot properly meet user needs.
 
 ### Reason #4: Users don’t adopt what we build, so the work delivers little real value
 
