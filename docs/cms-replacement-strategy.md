@@ -112,6 +112,12 @@ As of July 2026, we do not have write access, and continue to save data by opera
 
 ## What to do instead
 
+Changing approach is not just about fixing problems. It's also a significant opportunity. 
+
+Starting from the ground up means we can redesign the complete case management journey around what prosecutors and caseworkers actually need. 
+
+This will dramatically reduce the burden on already-overstretched users, improve outcomes for victims and defendants, and improve operations for CPS.
+
 1. Drastically reduce time spent iterating existing feature-products
 2. Define what the new system needs to do and by when
 3. Start measuring performance
@@ -158,7 +164,7 @@ Here are some ideas to consider (perhaps we have some of these already):
 - A roadmap to launch written in terms of user outcomes, not features and functionality; include external interfaces and compatability with non-functional requirements
 - A prioritised backlog written in terms of user needs, not functionality
 - A gap analysis: given the priority journeys and scenarios, what's missing between what's designed, what's built, and what users actually need
-- Continuous research and usability testing throughout the build, so the product reflects what users actually need — not what CMS currently gives them, or what we assume they need
+- Continuous research and usability testing before and throughout the build, so the product reflects what users actually need — not what CMS currently gives them, or what we assume they need
 
 What this could mean in practice:
 
