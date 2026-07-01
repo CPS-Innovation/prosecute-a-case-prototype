@@ -48,7 +48,12 @@ By connecting every feature-product back to the CMS database, it remains the per
 
 Every feature-product that reads from or writes back to it is a dependency that has to be unpicked before decommissioning can happen — whether or not we've changed the data model at all.
 
-When we do extend the model beyond what CMS supports — a notes field on a task, for example — it gets worse: it creates a fork between what CMS knows and what the feature-product knows, and users working in CMS miss information that only exists in the feature-product. [Confirm notes as a real example, or substitute the correct one]
+We have also been extending the model beyond what CMS supports. For example:
+
+- reminder tasks are a CMS task type some teams relied on for follow-ups; to stop users creating them, we have added the ability to create notes in the ‘planning’ tab within Work Management instead. These do not appear in CMS.
+- we have created new task types, such as “Early advice manager triage” which only appear in Work Management, not in CMS.
+
+This creates a fork between what CMS knows and what the feature-product knows, and users working in CMS miss information that only exists in the feature-product.
 
 The goal of this programme is to decommission CMS. But every new feature-product connected back to it makes that harder. The cost compounds with every change to a feature-product as we introduce additional transitional architecture and there’s a need to support both systems simultaneously.
 
