@@ -38,7 +38,7 @@ Instead, we’ve been building feature-products — separate systems that each h
 
 Because the feature-products maintain compatibility with CMS, what we design is constrained by what CMS can support. For example, Work Management is essentially a reskin of the task list within CMS. You can redesign the screens, but not the underlying model. The same broken workflows and workarounds carry over.
 
-This undermines the whole point. We’re replacing CMS because it does not meet user needs very well and does follow the GOV.UK Service Standard.
+This undermines the whole point. We’re replacing CMS because it does not meet user needs very well and does not follow the GOV.UK Service Standard.
 
 Voluntarily inheriting its data model means we inherit the problems we’re trying to escape.
 
@@ -48,7 +48,7 @@ By connecting every feature-product back to the CMS database, it remains the per
 
 Every feature-product that reads from or writes back to it is a dependency that has to be unpicked before decommissioning can happen — whether or not we've changed the data model at all.
 
-When we do extend the model beyond what CMS supports — a notes field on a task, for example — it gets worse: it creates a fork between what CMS knows and what the feature-product knows, and users working in CMS miss information that only exists in the feature-product. [confirm notes as a real example, or substitute the correct one]
+When we do extend the model beyond what CMS supports — a notes field on a task, for example — it gets worse: it creates a fork between what CMS knows and what the feature-product knows, and users working in CMS miss information that only exists in the feature-product.
 
 The goal of this programme is to decommission CMS. But every new feature-product connected back to it makes that harder. The cost compounds with every change to a feature-product as we introduce additional transitional architecture and there’s a need to support both systems simultaneously.
 
@@ -64,7 +64,7 @@ We have separate teams for each feature-product, for example:
 
 But this is a terrible user experience because it’s built around what tools they need to use, not the process or journey they need to take. It’s also negatively impacted the system architecture which is centered around the team structures, not the system as a whole.
 
-Users just have a goal they want to achieve, such as a review a case, and the journey involves all 3 of the above feature-products. This does not give users what they need.
+Users just have a goal they want to achieve, such as review a case, and the journey involves all 3 of the above feature-products. This does not give users what they need.
 
 The main reason we organised teams around feature-products was a result of following the proof of concepts that were initially created in isolation.
 
@@ -94,7 +94,7 @@ Users and their managers need to be confident in the new product before they wil
 
 This is because casework is one continuous journey. A case moves from arrival through review, charging decisions, hearings and outcome. Each of these things have sub journeys. For example, a user reviewing a case may simultaneously need to request information from the police, contact a victim, or update the defence. 
 
-There is no clean seam in the middle of this that a feature product can cut at cleanly.
+There is no clean seam that a feature-product can cut across without leaving part of the journey incomplete.
 
 The value of what we build is conditional on adoption.
 
@@ -113,7 +113,7 @@ As of July 2026, we do not have write access, and continue to save data by opera
 ## What to do instead
 
 1. Drastically reduce time spent iterating existing feature-products
-2. Define the product scope to be delivered by which deadline
+2. Define what the new system needs to do and by when
 3. Start measuring performance
 4. Start building the new system without syncing back data to CMS
 
@@ -127,7 +127,7 @@ Stopping doesn't mean throwing that away.
 
 It means redirecting the investment into building something users can actually do their whole job in, rather than another disconnected piece they can only do one task in.
 
-### Solution #2. Define the product scope to be delivered by which deadline
+### Solution #2. Define what the new system needs to do and by when
 
 Getting scope right determines whether the new system can actually replace CMS — but a well-scoped system can still fail to get adopted, and adoption is what actually replaces CMS, not the existence of working software.
 
@@ -144,8 +144,6 @@ Team leads and ops managers need to be convinced their team won't be made less p
 - A rollout and scale-up plan they've actually agreed to, not just been told about
 - A defined fallback
 - An understanding of what they're worried about, and a direct answer to it
-
-Without this, even a good product can get killed by a team lead who refuses to let their team use it, or quietly tells them not to bother.
 
 To make scope a deliberate decision and give team leads something real to evaluate, this needs producing alongside the build, not as an afterthought.
 
@@ -203,7 +201,7 @@ This is what we're doing today: a user's actions in a feature-product get writte
 The problems are:
 
 - It’s complicated
-- It’s significant cost
+- It’s a significant cost
 - It signicantly increases the time to deliver the work
 - It increases residual transitional architecture and tech debt
 - Leads to continued reliance on dual systems
@@ -218,12 +216,12 @@ This is similar to option 1, but syncing less often — for example, a user migh
 
 After that point, they can return to CMS; before it, they can't.
 
-This means that theoritically, after that point, users could continue using the old system, just from that point onwards.
+This means that theoretically, after that point, users could continue using the old system, just from that point onwards.
 
 But the problems are similar to option 1:
 
 - It’s complicated
-- It’s significant cost
+- It’s a significant cost
 - It signicantly increases the time to deliver the work
 - It increases residual transitional architecture and tech debt
 - Leads to continued reliance on dual systems
@@ -234,7 +232,7 @@ Based on existing understand we don’t think casework has clean boundaries — 
 
 #### Recommendation: no write-back
 
-We intercept messages a source, feeding new cases into the new system as they're created or become eligible, but nothing ever flows back.
+We intercept messages at source, feeding new cases into the new system as they're created or become eligible, but nothing ever flows back.
 
 This would be the only transitional architecture. There's no translation layer, no writing to two systems at once. 
 
