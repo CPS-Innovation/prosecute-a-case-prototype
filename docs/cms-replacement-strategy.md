@@ -1,5 +1,11 @@
 # Replace CMS: strategic assessment and recommendations
 
+## Who this document is for
+
+Everyone who can help us change direction. 
+
+It needs people to flag anything they disagree with. Anything major gets discussed at the next workshop, so we can move on to detailed planning instead of debating the approach.
+
 ## Executive summary
 
 What we’re doing is making the replacement of CMS:
@@ -178,20 +184,27 @@ What this could mean in practice:
 
 The BeyondCMS team already has a prototype deliberately unconstrained by CMS where everything a user does lives in one coherent product. 
 
-It's not real yet, but it shows what this approach looks like in practice and gives us a starting point to iterate on going forwards.
+It's not real yet, and it isn't evidence that it already delivers the outcomes CPS needs — that depends on the case quality standards and procedural requirements we're still defining. What it shows is that the approach itself — one coherent product, unconstrained by CMS — is buildable, and gives us a starting point to iterate on going forwards.
 
 ### Solution #3. Start measuring performance
 
-Without measurement, it's too easy to mistake activity for progress.
+Without measurement, it's too easy to mistake activity for value.
 
-Before rollout begins, the programme needs to be able to answer four questions:
+Before rollout begins, we must define our performance metrics and baseline where we are now.
 
-- What are the KPIs — the specific things we're trying to improve?
-- What is the baseline — how does the current state perform against those measures?
-- What are the adoption targets — by when, for which cohorts, covering which case types?
-- What are the realised benefits — not projected ones, but benefits we can point to in the data?
+For example:
 
-When those numbers exist, lack of progress becomes visible and hard to ignore. Without them, a programme can keep describing itself as on track while users haven't moved off CMS, adoption stays flat, and no one can say with confidence whether the work is delivering value.
+- Time to make a charging decision
+- Number of times a reviewing lawyer has to open a case
+- Compliance with statutory and procedural deadlines
+- Increase the number of guilty pleas at first hearing — so cases resolve earlier and don't load courts unnecessarily
+- Adoption rate — proportion of eligible cases and users fully on the new system vs. still on CMS, by cohort, case type and by when
+
+We should then work explicitly to these metrics — and treat benefits as realised once we can see them in the data, not before.
+
+When those indicators exist, lack of progress becomes visible and hard to ignore. 
+
+Without them, a programme can keep describing itself as on track while users haven't moved off CMS, adoption stays flat, and no one can say with confidence whether the work is delivering value.
 
 Measurement also gives team leads and ops managers something concrete to evaluate — not just a demo or a promise, but evidence.
 
