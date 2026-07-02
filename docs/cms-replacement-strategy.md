@@ -1,11 +1,5 @@
 # Replace CMS: strategic assessment and recommendations
 
-## Who this document is for
-
-Everyone who can help us change direction. 
-
-It needs people to flag anything they disagree with. Anything major gets discussed at the next workshop, so we can move on to detailed planning instead of debating the approach.
-
 ## Executive summary
 
 What we’re doing is making the replacement of CMS:
@@ -184,7 +178,7 @@ What this could mean in practice:
 
 The BeyondCMS team already has a prototype deliberately unconstrained by CMS where everything a user does lives in one coherent product. 
 
-It's not real yet, and it isn't evidence that it already delivers the outcomes CPS needs — that depends on the case quality standards and procedural requirements we're still defining. What it shows is that the approach itself — one coherent product, unconstrained by CMS — is buildable, and gives us a starting point to iterate on going forwards.
+What it shows is that the approach itself — one coherent product, unconstrained by CMS — is buildable, and gives us a starting point to iterate on going forwards. That iteration still needs to add capability, test with users, and meet the case quality standards and procedural requirements.
 
 ### Solution #3. Start measuring performance
 
